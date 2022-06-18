@@ -1,0 +1,167 @@
+<div style="padding-top: 4%;">
+
+    <div class="containerInnerSignUp">
+        <div>
+            <h3 class="text-left font-weight-bold " style="color: black" nz-typography>Sign Up as company</h3>
+            <div class="row">
+                <div class="col-9">
+                    <div class="card boxContainer text-center">
+                        <form nz-form [nzLayout]="'vertical'" [formGroup]="signUpForm" (ngSubmit)="signUp()"
+                              role="form">
+                            <div class="row">
+                                <div class="col-12">
+                                    <nz-form-item>
+                                        <nz-form-control [nzErrorTip]="name">
+                                            <input type="text" nz-input formControlName="name_en" nzSize="large"
+                                                   placeholder="name english"/>
+                                        </nz-form-control>
+                                        <ng-template #name let-control>
+                                            <ng-container
+                                                    *ngIf="signUpForm.get('name_en').hasError('required')">
+                                                please enter english name
+                                            </ng-container>
+                                        </ng-template>
+
+                                    </nz-form-item>
+                                    <nz-form-item>
+                                        <nz-form-control [nzErrorTip]="name_ar">
+                                            <input type="text" nz-input formControlName="name_ar" nzSize="large"
+                                                   placeholder="name arabic"/>
+                                        </nz-form-control>
+                                        <ng-template #name_ar let-control>
+                                            <ng-container
+                                                    *ngIf="signUpForm.get('name_ar').hasError('required')">
+                                                please enter arabic name
+                                            </ng-container>
+                                        </ng-template>
+                                    </nz-form-item>
+                                    <nz-form-item>
+                                        <nz-form-control [nzErrorTip]="email">
+                                            <input type="text" nz-input formControlName="email" nzSize="large"
+                                                   placeholder="email"/>
+                                        </nz-form-control>
+                                        <ng-template #email let-control>
+                                            <ng-container
+                                                    *ngIf="signUpForm.get('email').hasError('required')">
+                                                please enter valid email
+                                            </ng-container>
+                                        </ng-template>
+                                    </nz-form-item>
+                                    <nz-form-item>
+                                        <nz-form-control [nzErrorTip]="address">
+                                            <input type="text" nz-input formControlName="address" nzSize="large"
+                                                   placeholder="address"/>
+                                        </nz-form-control>
+                                        <ng-template #address let-control>
+                                            <ng-container
+                                                    *ngIf="signUpForm.get('address').hasError('required')">
+                                                please enter address
+                                            </ng-container>
+                                        </ng-template>
+                                    </nz-form-item>
+                                    <nz-form-item>
+                                        <nz-form-control [nzErrorTip]="responsible_name">
+                                            <input type="text" nz-input formControlName="responsible_name"
+                                                   nzSize="large"
+                                                   placeholder="responsible name"/>
+                                        </nz-form-control>
+                                        <ng-template #responsible_name let-control>
+                                            <ng-container
+                                                    *ngIf="signUpForm.get('responsible_name').hasError('required')">
+                                                please enter responsible name
+                                            </ng-container>
+                                        </ng-template>
+                                    </nz-form-item>
+                                    <nz-form-item>
+                                        <nz-form-control [nzErrorTip]="responsible_phone">
+                                            <input type="text" nz-input formControlName="responsible_phone"
+                                                   nzSize="large"
+                                                   placeholder="responsible phone"/>
+                                        </nz-form-control>
+                                        <ng-template #responsible_phone let-control>
+                                            <ng-container
+                                                    *ngIf="signUpForm.get('responsible_phone').hasError('required')">
+                                                please enter responsible phone
+                                            </ng-container>
+                                        </ng-template>
+                                    </nz-form-item>
+                                    <nz-form-item>
+                                        <nz-form-control [nzErrorTip]="license_number">
+                                            <input type="text" nz-input formControlName="license_number" nzSize="large"
+                                                   placeholder="license number"/>
+                                        </nz-form-control>
+                                        <ng-template #license_number let-control>
+                                            <ng-container
+                                                    *ngIf="signUpForm.get('license_number').hasError('required')">
+                                                please enter license number
+                                            </ng-container>
+                                        </ng-template>
+                                    </nz-form-item>
+                                    <nz-form-item>
+                                        <nz-form-control [nzErrorTip]="prefix">
+                                            <input type="text" nz-input formControlName="prefix" nzSize="large"
+                                                   placeholder="prefix"/>
+                                        </nz-form-control>
+                                        <ng-template #prefix let-control>
+                                            <ng-container
+                                                    *ngIf="signUpForm.get('prefix').hasError('required')">
+                                                please enter prefix
+                                            </ng-container>
+                                        </ng-template>
+                                    </nz-form-item>
+                                    <nz-form-item>
+                                        <nz-form-control [nzErrorTip]="number_of_inventories">
+                                            <input type="number" nz-input formControlName="number_of_inventories" nzSize="large"
+                                                   placeholder="number of inventories"/>
+                                        </nz-form-control>
+                                        <ng-template #number_of_inventories let-control>
+                                            <ng-container
+                                                    *ngIf="signUpForm.get('number_of_inventories').hasError('required')">
+                                                please enter number of inventories
+                                            </ng-container>
+                                        </ng-template>
+                                    </nz-form-item>
+                                    <nz-form-item>
+                                        <nz-form-control [nzErrorTip]="password">
+                                            <input type="text" nz-input formControlName="password" nzSize="large"
+                                                   placeholder="password"/>
+                                        </nz-form-control>
+                                        <ng-template #password let-control>
+                                            <ng-container
+                                                    *ngIf="signUpForm.get('password').hasError('required')">
+                                                please enter password
+                                            </ng-container>
+                                        </ng-template>
+                                    </nz-form-item>
+                                    <button nz-button class="w-100" [nzType]="'primary'"
+                                            [disabled]="signUpForm.invalid">Sign Up
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="mb-3">
+                        <nz-upload nzType="drag" [nzMultiple]="true" [nzLimit]="1"
+                                   [(nzFileList)]="logo" [nzBeforeUpload]="beforeUploadLogo">
+                            <p class="ant-upload-drag-icon">
+                                <i nz-icon nzType="inbox"></i>
+                            </p>
+                            <p class="ant-upload-text">Click or drag file to this area to upload logo</p>
+                        </nz-upload>
+                    </div>
+                    <div class="mb-3">
+                        <nz-upload nzType="drag" [nzMultiple]="true"
+                                   [(nzFileList)]="licenses" [nzBeforeUpload]="beforeUploadLicenses">
+                            <p class="ant-upload-drag-icon">
+                                <i nz-icon nzType="inbox"></i>
+                            </p>
+                            <p class="ant-upload-text">Click or drag file to this area to upload licenses</p>
+                        </nz-upload>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

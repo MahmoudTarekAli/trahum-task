@@ -1,0 +1,50 @@
+<div class="card">
+  <div class="card-body">
+    <h5 class="mb-4">
+      <strong>{{isUpdate ? ('update' | translate ): ('create' | translate)}} {{'beneficiary Types' | translate}}</strong>
+    </h5>
+    <form nz-form [nzLayout]="'vertical'" [formGroup]="CustomerForm">
+      <div class="row">
+        <div class="col-md-6">
+          <nz-form-item>
+            <nz-form-label nzFor="name arabic" nzRequired>{{'name_ar' | translate}}</nz-form-label>
+            <nz-form-control [nzErrorTip]="name_ar">
+              <input nz-input [placeholder]="'name_ar' | translate" id="name" formControlName="name_ar"/>
+            </nz-form-control>
+            <ng-template #name_ar let-control>
+              <ng-container>
+                {{'please-enter'}} {{'name_ar' | translate}}
+              </ng-container>
+            </ng-template>
+          </nz-form-item>
+        </div>
+        <div class="col-md-6">
+          <nz-form-item>
+            <nz-form-label nzFor="name_en" nzRequired>{{'name_en' | translate}}</nz-form-label>
+            <nz-form-control [nzErrorTip]="name_en">
+              <input nz-input [placeholder]="'name_en' | translate" id="name_en" formControlName="name_en"/>
+            </nz-form-control>
+            <ng-template #name_en let-control>
+              <ng-container>
+                {{'please-enter'}} {{'name_en' | translate}}
+              </ng-container>
+            </ng-template>
+          </nz-form-item>
+        </div>
+      </div>
+      <nz-form-item>
+        <button type="button" class="btn btn-light px-5" nz-button nzType="primary" (click)="submit()"
+                [nzLoading]="loading" *ngIf="!isUpdate"
+                [disabled]="CustomerForm.invalid"> {{'Add' | translate}} {{'Beneficiary Type' | translate}}
+        </button>
+        <button type="button" class="btn btn-light px-5" nz-button nzType="primary" (click)="submit()"
+                [nzLoading]="loading" *ngIf="isUpdate"
+                [disabled]="CustomerForm.invalid"> {{'Update' | translate}} {{'Beneficiary Type' | translate}}
+        </button>
+      </nz-form-item>
+
+    </form>
+
+
+  </div>
+</div>

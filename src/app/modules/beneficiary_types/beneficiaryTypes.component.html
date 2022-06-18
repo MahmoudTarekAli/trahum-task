@@ -1,0 +1,47 @@
+<div class="cui__utils__heading mb-3 d-flex justify-content-between mb-5">
+  <strong class="text-uppercase font-size-16">{{'Beneficiary Types' | translate}}</strong>
+  <button nz-button nzType="primary" class="ml-3" routerLink="./add-beneficiaryTypes" nzSize="default">
+    {{'Create' | translate}} {{'Beneficiary Types' | translate}}
+
+  </button>
+</div>
+<nz-table
+  [nzScroll]="{ x: '1100px' }"
+  [nzData]="beneficiaryTypes"
+  [nzFrontPagination]="false"
+  [nzLoading]="loading"
+  [nzTotal]="total"
+  [nzBordered]="true"
+  [nzTitle]="'Beneficiary Types' | translate "
+  [nzFooter]="('We Found'|translate)+' ' + total + ' ' +('Beneficiary Types' | translate)"
+  [nzPageIndex]="pageIndex"
+  [nzShowSizeChanger]="false"
+  (nzQueryParams)="onQueryParamsChange($event)">
+  <thead>
+  <tr>
+    <th nzColumnKey="name_en">{{'name en' | translate}}</th>
+    <th nzColumnKey="name_en">{{'name ar' | translate}}</th>
+    <th>{{'action' | translate}}</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let data of beneficiaryTypes let i = index">
+    <td>{{ data?.name_en }}</td>
+    <td>{{ data?.name_ar}}</td>
+    <td>
+      <a class="btn btn-sm btn-light mr-2" [routerLink]="['./update-beneficiaryTypes', data.id]">
+        <i nz-icon nzType="edit" nzTheme="outline"></i>
+      </a>
+      <a class="btn btn-sm btn-light mr-2" nz-popconfirm
+         [nzPopconfirmTitle]="'Are you sure you want to delete ' + data?.name_en"
+         nzPopconfirmPlacement="bottom"
+         (nzOnConfirm)="deleteCustomer(data , i)" appIsAuthorized key="Customers"
+         action="delete">
+        <i nz-icon nzType="delete" nzTheme="outline"></i>
+      </a>
+      <nz-switch  nzCheckedChildren="active" nzUnCheckedChildren="de-active" [(ngModel)]="data.is_active" (ngModelChange)="activateBeneficiaryType($event, data?._id)"></nz-switch>
+
+    </td>
+  </tr>
+  </tbody>
+</nz-table>

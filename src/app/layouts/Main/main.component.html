@@ -1,0 +1,69 @@
+<div [ngClass]="{
+  'cui__layout__grayBackground': isGrayBackground
+}">
+    <nz-layout [ngClass]="{
+  'cui__layout__contentMaxWidth': isContentMaxWidth,
+  'cui__layout__appMaxWidth': isAppMaxWidth,
+  'cui__layout__grayBackground': isGrayBackground,
+  'cui__layout__squaredBorders': isSquaredBorders,
+  'cui__layout__cardsShadow': isCardShadow,
+  'cui__layout__borderless': isBorderless
+}">
+        <!--    <cui-sidebar></cui-sidebar>-->
+
+        <!-- left menu -->
+        <!-- FIX: nz-sider wrapper fix layout behaviour in case when cui-menu-left root tag breaks layout transformation -->
+
+        <!-- mobile menu with drawer -->
+        <!--    <cui-sidebar></cui-sidebar>-->
+        <nz-sider *ngIf="!isMobileView && userData.status != 'pending'"
+                  [nzWidth]="isMenuCollapsed ? 80 : leftMenuWidth"
+                  style="transition: none !important">
+            <cui-menu-left></cui-menu-left>
+        </nz-sider>
+        <div *ngIf="isMobileView && userData?.status != 'pending'" >
+            <div class="handler" (click)="toggleMobileMenu()">
+                <div class="handlerIcon"></div>
+            </div>
+            <nz-drawer [nzClosable]="false" [nzWrapClassName]="'mobileMenu'" [nzVisible]="isMobileMenuOpen"
+                       [nzPlacement]="lang === 'ar-EG'? 'right' : 'left'"
+                       (nzOnClose)="toggleMobileMenu()">
+                <cui-menu-left></cui-menu-left>
+            </nz-drawer>
+        </div>
+        <!-- top menu -->
+        <nz-layout *ngIf="userData.status != 'pending'">
+            <nz-header [ngClass]="{
+        'cui__layout__header': true,
+        'cui__layout__fixedHeader': isTopbarFixed,
+        'cui__layout__headerGray': isGrayTopbar
+      }">
+                <cui-topbar></cui-topbar>
+            </nz-header>
+            <nz-content style="height: 100%; position: relative;">
+                <div class="cui__utils__content">
+                    <div
+                         [@slideFadeinRight]="routeAnimation(outlet, 'slideFadeinRight')"
+                         [@zoomFadein]="routeAnimation(outlet, 'zoomFadein')"
+                         [@fadein]="routeAnimation(outlet, 'fadein')">
+                        <router-outlet #outlet="outlet"></router-outlet>
+                    </div>
+                </div>
+            </nz-content>
+            <nz-footer>
+                <cui-footer></cui-footer>
+            </nz-footer>
+        </nz-layout>
+        <div *ngIf="userData.status === 'pending'">
+            <cui-topbar></cui-topbar>
+
+            <nz-result nzStatus="403" nzTitle="403"
+                       nzSubTitle="Your account request is going under investigation and you will be able to access all your feature soon after we accept your account ">
+                <div nz-result-extra>
+                </div>
+            </nz-result>
+        </div>
+
+    </nz-layout>
+</div>
+
